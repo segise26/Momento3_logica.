@@ -2,9 +2,12 @@ import java.util.Scanner;
 
 public class App {
 
+    
     public static boolean buscarReferencia(String[] lote, String nombreBuscado) {
         boolean encontrado = false;
+        
         for (int i = 0; i < lote.length; i++) {
+            
             if (lote[i] != null) {
                 if (lote[i].equalsIgnoreCase(nombreBuscado)) {
                     encontrado = true;
@@ -16,6 +19,8 @@ public class App {
 
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
+        
+        
         String[] referencias = {"Jeans AirFlex", "Graphic Tee", "Denim Jacket", null, null};
         int opcion = 0;
 
@@ -28,6 +33,7 @@ public class App {
             System.out.print("Elija una opcion: ");
             
             opcion = leer.nextInt();
+            leer.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -42,7 +48,9 @@ public class App {
                 case 2:
                     System.out.print("Digite el nombre de la prenda a buscar: ");
                     String buscado = leer.nextLine();
+                    
                     boolean existe = buscarReferencia(referencias, buscado);
+                    
                     if (existe == true) {
                         System.out.println("La prenda SI esta guardada en la caja.");
                     } else {
@@ -54,14 +62,16 @@ public class App {
                     System.out.print("Digite el nombre de la nueva prenda: ");
                     String nuevaPrenda = leer.nextLine();
                     boolean guardado = false;
+
                     for (int i = 0; i < referencias.length; i++) {
                         if (referencias[i] == null) {
                             referencias[i] = nuevaPrenda;
                             guardado = true;
                             System.out.println("Prenda registrada en la posicion " + i);
-                            break;
+                            break; 
                         }
                     }
+
                     if (guardado == false) {
                         System.out.println("No se pudo guardar, la caja ya esta llena.");
                     }
@@ -75,6 +85,7 @@ public class App {
                     System.out.println("Opcion incorrecta, intente de nuevo.");
                     break;
             }
+
         } while (opcion != 4);
     }
 }
